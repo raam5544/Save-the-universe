@@ -64,8 +64,9 @@ const popUp = document.querySelector('.popUpHidden')
 //     playerScoreBoard.appendChild(alienShipstatus)
 // }
 // window.addEventListener('load', onLoad)
-playerScoreBoard.appendChild(playerScore)
 playerScoreBoard.appendChild(stat)
+playerScoreBoard.appendChild(playerScore)
+
 
 
 
@@ -85,20 +86,24 @@ function attack() {
     function playerAttack() {
         const newaccur = Math.random()
         if (newaccur >= accur && hull > 0) {
-            console.log(`Alien Health:${alienShips[i].hull}`)
+            console.log("Player Fired")
             alienShips[i].hull = alienShips[i].hull - firePow
+            console.log(`Alien Health:${alienShips[i].hull}`)
             if (alienShips[i].hull < 0) {
                 alienHealth = false
                 alienStat.textContent = `${alienShips[i].name} Destroyed`
                 popUp.className = 'popUp'
 
+                stat.textContent = 'Player Attacked'
+                alienScore.textContent = `Alien hull value: ${alienShips[i].hull}`
             }
 
-            stat.textContent = 'Player Attacked'
-            alienScore.textContent = `Alien hull value: ${alienShips[i].hull}`
+            // stat.textContent = 'Player Attacked'
+            // alienScore.textContent = `Alien hull value: ${alienShips[i].hull}`
 
         } else if (hull > 0) {
             stat.textContent = "Player Missed"
+            // console.log('Player Missed')
         }
 
 
@@ -108,8 +113,9 @@ function attack() {
         const newaccur = Math.random()
         alienScore.textContent = `Alien hull value: ${alienShips[i].hull}`
         if (newaccur >= alienShips[i].accur && alienShips[i].hull > 0) {
-            console.log(`Player Health:${hull}`)
+            console.log("Alien Fired")
             hull = hull - alienShips[i].firePow
+            console.log(`Player Health:${hull}`)
             if (hull < 0) {
                 playerHealth = false
                 stat.textContent = 'Player destroyed'
