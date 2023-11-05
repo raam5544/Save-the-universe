@@ -66,8 +66,7 @@ playerScoreBoard.appendChild(stat)
 alienScoreBoard.appendChild(alienScore)
 alienScoreBoard.appendChild(alienStat)
 
-
-
+const finalResult = document.querySelector('#finalResult')
 
 
 
@@ -80,7 +79,7 @@ function attack() {
     function playerAttack() {
         const newaccur = Math.random()
         if (newaccur >= accur && hull > 0) {
-            console.log(`alien:${alienShips[i].hull}`)
+            console.log(`Alien Health:${alienShips[i].hull}`)
             alienShips[i].hull = alienShips[i].hull - firePow
             if (alienShips[i].hull < 0) {
                 alienHealth = false
@@ -103,11 +102,13 @@ function attack() {
         const newaccur = Math.random()
         alienScore.textContent = `Alien hull value: ${alienShips[i].hull}`
         if (newaccur >= alienShips[i].accur && alienShips[i].hull > 0) {
+            console.log(`Player Health:${hull}`)
             hull = hull - alienShips[i].firePow
             if (hull < 0) {
                 playerHealth = false
                 stat.textContent = 'Player destroyed'
-
+                finalResult.textContent = "Aliens Destroyed You!...Game Over"
+                openUpGameOver()
             }
             alienStat.textContent = 'Alien Attacked'
 
@@ -119,10 +120,9 @@ function attack() {
     while (alienHealth && playerHealth) {
 
         playerAttack()
-        console.log(1)
 
         alienAttack()
-        console.log(3)
+
 
     }
 
@@ -131,6 +131,11 @@ function attack() {
 function roundUp() {
     popUp.classList.toggle('popUpHidden')
     i++
+    if (i > alienShips.length - 1) {
+        finalResult.textContent = "You Destroyed all the ships... Game Over"
+        openUpGameOver()
+        return
+    }
     attack()
 }
 
@@ -138,6 +143,10 @@ const gameOver = document.querySelector('.gameOverHidden')
 function openUpGameOver() {
     gameOver.className = 'gameOver'
     popUp.className = 'popUpHidden'
+}
+
+function reLoad() {
+    location.reload()
 }
 
 // if (alienShips[i].hull < 0) {
