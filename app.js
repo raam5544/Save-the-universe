@@ -12,16 +12,22 @@ let accur = 0.7
 let i = 0
 
 const alienShips = [{
-    name: 'ship1',
+    name: 'Ship1',
     hull: 6,
     firePow: 4,
     accur: 0.6
 },
 {
-    name: 'ship2',
+    name: 'Ship2',
     hull: 8,
     firePow: 6,
     accur: 0.7
+},
+{
+    name: 'Ship3',
+    hull: 7,
+    firePow: 7,
+    accur: 0.6
 }]
 const playerScore = document.createElement('h2')
 playerScore.textContent = `Your hull value ${hull}`
